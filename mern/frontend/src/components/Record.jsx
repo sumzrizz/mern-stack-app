@@ -16,9 +16,8 @@ export default function Record() {
       const id = params.id?.toString() || undefined;
       if(!id) return;
       setIsNew(false);
-      const response = await fetch(
-        `http://localhost:5050/record/${params.id.toString()}`
-      );
+      const apiUrl = `http://${window.location.hostname}:5050/record/${params.id.toString()}`;
+      const response = await fetch(apiUrl);
       if (!response.ok) {
         const message = `An error has occurred: ${response.statusText}`;
         console.error(message);
@@ -47,11 +46,12 @@ export default function Record() {
   async function onSubmit(e) {
     e.preventDefault();
     const person = { ...form };
+    const apiUrl = `http://${window.location.hostname}:5050/record`;
     try {
       let response;
       if (isNew) {
         // if we are adding a new record we will POST to /record.
-        response = await fetch("http://localhost:5050/record", {
+        response = await fetch(apiUrl, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default function Record() {
         });
       } else {
         // if we are updating a record we will PATCH to /record/:id.
-        response = await fetch(`http://localhost:5050/record/${params.id}`, {
+        response = await fetch(`${apiUrl}/${params.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
