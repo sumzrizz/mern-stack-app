@@ -4,3 +4,4 @@ config.env
 # Exclude documentation files
 jenkins_ansible_project_ideas.md
 AWS_EC2_DEPLOYMENT_GUIDE.md
+GITHUB_UPLOAD_INSTRUCTIONS.md
