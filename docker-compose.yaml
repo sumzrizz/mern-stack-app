@@ -1,13 +1,13 @@
 services:
   frontend:
-    build: ./mern/frontend
+    build: ./frontend
     ports:
       - "5173:80"
     networks:
       - mern
 
   backend:
-    build: ./mern/backend
+    build: ./backend
     ports:
       - "5050:5050"
     networks:
